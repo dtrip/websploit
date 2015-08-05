@@ -6,6 +6,7 @@
 import os
 import socket
 from core import wcolors
+from colorama import init, Fore, Back, Style
 from core import help
 from time import sleep
 
@@ -85,6 +86,7 @@ def cloudflare_resolver():
                     'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z',
                     'wordpress', 'piwik', 'wiki', 'stats', 'flatpress', 'multipress', 'cms', 'jms', 'crm', 'sugar', 'salesforce', 'sf',
                     'asterisk', 'vpn', 'system', 'sys',
+                    'www-origin', 'origin-www', 'origin', 'production-origin', 'www.origin', 'origin.www', 'origin-web', 'web-origin', 'origin.web', 'web.origin',
                     )
             try:
                 orgip = socket.gethostbyname(options[0])
@@ -97,9 +99,9 @@ def cloudflare_resolver():
                 host = i+'.'+options[0]
                 try:
                     ip = socket.gethostbyname(host)
-                    print "[+] %s : %s"%(host, ip)
+                    print "%s%s[+] %s : %s%s" % (Style.BRIGHT, Fore.GREEN, host, ip, Style.RESET_ALL)
                 except(socket.gaierror):
-                    print "[-] %s : N/A"%host
+                    print "%s%s[-] %s : N/A%s" % (Style.BRIGHT, Fore.BLUE, host, Style.RESET_ALL)
             cloudflare_resolver()
         else:
             print "Wrong Command =>" + com
