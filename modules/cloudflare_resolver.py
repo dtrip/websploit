@@ -102,7 +102,10 @@ def cloudflare_resolver():
                 host = i+'.'+options[0]
                 try:
                     ip = socket.gethostbyname(host)
-                    print "%s%s[+] %s : %s%s" % (Style.BRIGHT, Fore.GREEN, host, ip, Style.RESET_ALL)
+                    if ip == orgip:
+                        print "%s%s[+] %s : %s%s" % (Style.BRIGHT, Fore.CYAN, host, ip, Style.RESET_ALL)
+                    else:
+                        print "%s%s[+] %s : %s%s" % (Style.BRIGHT, Fore.GREEN, host, ip, Style.RESET_ALL)
                 except(socket.gaierror):
                     print "%s%s[-] %s : N/A%s" % (Style.BRIGHT, Fore.BLUE, host, Style.RESET_ALL)
             cloudflare_resolver()
